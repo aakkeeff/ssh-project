@@ -18,13 +18,23 @@ while true; do
             servers+=("$ip")
             echo "server added successfully!"
             ;;
-        
         2) 
             echo "here are the saved servers: "
-            
             for ip in "${servers[@]}"; do
                 echo "$ip"
             done
             ;;
+
+        3) 
+            for ip in "${servers[@]}"; do
+
+                if ping -c 1 -W 2  $ip > /dev/null 2>&1; then
+                    echo "$ip is UP!"
+                else
+                    echo "$ip is DOWN!"
+                fi
+            done
+
+    
     esac 
 done
